@@ -3,6 +3,17 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   margin-top: 50px;
+  background: #f3eaea; /* White background for the box */
+}
+
+#gameContainer {
+  background-color: #e6c8c8; /* White background for the box */
+  border: 2px solid #6e190c; /* Gold border, similar to the yellow color you mentioned */
+  border-radius: 10px; /* Rounded corners for the box */
+  padding: 20px; /* Space inside the box */
+  width: fit-content; /* Only as wide as it needs to be */
+  margin: auto; /* Center the box horizontally */
+  text-align: center; /* Center text and content */
 }
 
 .board {
@@ -11,6 +22,26 @@ body {
   grid-template-rows: repeat(3, 100px);
   gap: 5px;
   margin: auto;
+  justify-content: center;
+}
+
+#scoreBoard {
+  display: flex; /* Enables flexbox */
+  justify-content: space-between; /* Distributes space between child elements */
+  padding: 0 20px; /* Adds some padding on the sides */
+  margin-bottom: 20px; /* Adds some space below the scoreboard */
+}
+
+/* Optionally, if you want the scores to be centered vertically as well */
+#scoreBoard > div {
+  display: flex;
+  align-items: center; /* Aligns the text vertically */
+}
+
+#playerXScore,
+#playerOScore {
+  flex: 1; /* Gives an equal amount of space to both score divs */
+  text-align: center; /* Centers the text within each score div */
 }
 
 .cell {
@@ -26,4 +57,23 @@ body {
 
 .cell.taken {
   pointer-events: none;
+}
+
+#restartButton {
+  display: block; /* Display as a block to allow width and margin auto */
+  margin: 20px auto; /* Center button horizontally and add space above and below */
+  padding: 10px 20px; /* Padding inside the button */
+  border-radius: 20px; /* Rounded edges for the button */
+  background-color: #410452; /* Yellow background for the button */
+  color: #f4f3f3; /* Text color */
+  border: none; /* Remove default border */
+  cursor: pointer; /* Change mouse cursor on hover */
+
+  /* Adding a glow effect */
+  box-shadow: 0 0 10px #f4f3f3; /* Horizontal offset, vertical offset, blur radius, and color of the glow */
+}
+
+#restartButton:hover {
+  /* Enhancing the glow effect when hovering over the button */
+  box-shadow: 0 0 15px #f4f3f3; /* Increasing blur radius on hover for a stronger glow */
 }

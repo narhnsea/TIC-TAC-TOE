@@ -1,6 +1,9 @@
 // script.js
+let scoreX = 0;
+let scoreO = 0;
+const scoreXElement = document.getElementById("scoreX");
+const scoreOElement = document.getElementById("scoreO");
 const cells = document.querySelectorAll(".cell");
-const gameBoard = document.getElementById("gameBoard");
 const restartButton = document.getElementById("restartButton");
 let currentPlayer = "X";
 
@@ -9,16 +12,29 @@ const handleCellClick = (e) => {
   cell.textContent = currentPlayer;
   cell.classList.add("taken");
 
+  // Check if current player won
   if (checkWin(currentPlayer)) {
     alert(`${currentPlayer} wins!`);
+    // Update the score
+    if (currentPlayer === "X") {
+      scoreX++;
+      scoreXElement.textContent = scoreX;
+    } else {
+      scoreO++;
+      scoreOElement.textContent = scoreO;
+    }
+    resetBoard();
     return;
   }
 
+  // Check if the game is a draw
   if (isDraw()) {
     alert("It's a draw!");
+    resetBoard();
     return;
   }
 
+  // Switch to the other player
   currentPlayer = currentPlayer === "X" ? "O" : "X";
 };
 
@@ -47,14 +63,24 @@ const isDraw = () => {
   });
 };
 
+const resetBoard = () => {
+  cells.forEach((cell) => {
+    cell.textContent = "";
+    cell.classList.remove("taken");
+    cell.removeEventListener("click", handleCellClick);
+    cell.addEventListener("click", handleCellClick, { once: true });
+  });
+  currentPlayer = "X";
+};
+
 cells.forEach((cell) => {
   cell.addEventListener("click", handleCellClick, { once: true });
 });
 
 restartButton.addEventListener("click", () => {
-  cells.forEach((cell) => {
-    cell.textContent = "";
-    cell.classList.remove("taken");
-  });
-  currentPlayer = "X";
+  resetBoard();
+  scoreX = 0;
+  scoreO = 0;
+  scoreXElement.textContent = scoreX;
+  scoreOElement.textContent = scoreO;
 });
