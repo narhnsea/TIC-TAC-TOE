@@ -38,49 +38,83 @@ const handleCellClick = (e) => {
   currentPlayer = currentPlayer === "X" ? "O" : "X";
 };
 
+// Switch to the other playercurrentPlayer = currentPlayer === "X" ? "O" : "X";
+
+// Check if a player has won the game
 const checkWin = (player) => {
+  // Define the win conditions for the game
   const winConditions = [
-    [0, 1, 2],
+    [0, 1, 2], // Rows
     [3, 4, 5],
-    [6, 7, 8], // Rows
-    [0, 3, 6],
+    [6, 7, 8],
+    [0, 3, 6], // Columns
     [1, 4, 7],
-    [2, 5, 8], // Columns
-    [0, 4, 8],
-    [2, 4, 6], // Diagonals
+    [2, 5, 8],
+    [0, 4, 8], // Diagonals
+    [2, 4, 6],
   ];
 
+  // Check if any of the win conditions are satisfied
   return winConditions.some((combination) => {
+    // Check if all the cells in the combination match the player
     return combination.every((index) => {
       return cells[index].textContent === player;
     });
   });
 };
 
+// Check if the game is a draw
 const isDraw = () => {
+  // Check if all the cells are taken
   return [...cells].every((cell) => {
     return cell.classList.contains("taken");
   });
 };
 
 const resetBoard = () => {
+  // Loop through each cell in the `cells` array
   cells.forEach((cell) => {
+    // Set the text content of the cell to an empty string
     cell.textContent = "";
+    // Remove the "taken" class from the cell
     cell.classList.remove("taken");
+    // Remove the click event listener from the cell
     cell.removeEventListener("click", handleCellClick);
+    // Add the click event listener to the cell, with the `{ once: true }` option
     cell.addEventListener("click", handleCellClick, { once: true });
   });
+
+  // Loop through each cell in the `cells` array
+  cells.forEach(() => {
+    // Set the text content of the cell to an empty string
+    cell.textContent = "";
+    // Remove the "taken" class from the cell
+    cell.classList.remove("taken");
+    // Remove the event listener for the "click" event from the cell
+    cell.removeEventListener("click", handleCellClick);
+    // Add a new event listener for the "click" event to the cell, which will only trigger once
+    cell.addEventListener("click", handleCellClick, { once: true });
+  });
+
+  // Set the `currentPlayer` variable to "X"
   currentPlayer = "X";
+
+  // Loop through each cell in the `cells` array and add a "click" event listener to each one
+  cells.forEach((cell) => {
+    cell.addEventListener("click", handleCellClick, { once: true });
+  });
+
+  // Add a "click" event listener to the "restartButton" element
+  restartButton.addEventListener("click", () => {
+    // Call the `resetBoard` function
+    resetBoard();
+    // Set the `scoreX` variable to 0
+    scoreX = 0;
+    // Set the `scoreO` variable to 0
+    scoreO = 0;
+    // Set the text content of the `scoreXElement` element to the value of `scoreX`
+    scoreXElement.textContent = scoreX;
+    // Set the text content of the `scoreOElement` element to the value of `scoreO`
+    scoreOElement.textContent = scoreO;
+  });
 };
-
-cells.forEach((cell) => {
-  cell.addEventListener("click", handleCellClick, { once: true });
-});
-
-restartButton.addEventListener("click", () => {
-  resetBoard();
-  scoreX = 0;
-  scoreO = 0;
-  scoreXElement.textContent = scoreX;
-  scoreOElement.textContent = scoreO;
-});
