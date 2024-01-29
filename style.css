@@ -2,7 +2,7 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 20px;
   background: #f3eaea; /* White background for the box */
 }
 
@@ -14,8 +14,13 @@ body {
   width: fit-content; /* Only as wide as it needs to be */
   margin: auto; /* Center the box horizontally */
   text-align: center; /* Center text and content */
+  animation: cssAnimation_0 1249ms infinite ease-out;
 }
-
+@keyframes cssAnimation_0 {
+  to {
+    box-shadow: 0px 0px 14px 15px rgba(173, 12, 114, 0.3);
+  }
+}
 .board {
   display: grid;
   grid-template-columns: repeat(3, 100px);
@@ -30,12 +35,14 @@ body {
   justify-content: space-between; /* Distributes space between child elements */
   padding: 0 20px; /* Adds some padding on the sides */
   margin-bottom: 20px; /* Adds some space below the scoreboard */
+  font-weight: bold;
 }
 
 /* Optionally, if you want the scores to be centered vertically as well */
 #scoreBoard > div {
   display: flex;
   align-items: center; /* Aligns the text vertically */
+  justify-content: center;
 }
 
 #playerXScore,
@@ -47,12 +54,12 @@ body {
 .cell {
   width: 100px;
   height: 100px;
-  border: 1px solid #c98a8a;
+  border: 1.5px solid #c98a8a;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 36px;
   cursor: pointer;
+  font-size: 4em; /* Adjust the size as needed */
 }
 
 /* Top left corner */
@@ -79,6 +86,16 @@ body {
   pointer-events: none;
 }
 
+.x {
+  color: rgb(61, 17, 48); /* Style for X */
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.o {
+  color: rgb(61, 17, 48); /* Style for O */
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
 #restartButton {
   display: block; /* Display as a block to allow width and margin auto */
   margin: 20px auto; /* Center button horizontally and add space above and below */
@@ -101,18 +118,4 @@ body {
 #restartButton {
   border: 0px solid rgba(100, 100, 100, 1);
   border-radius: 19px;
-  animation: cssAnimation_0 1249ms infinite ease-out;
-}
-
-@keyframes cssAnimation_0 {
-  to {
-    box-shadow: 0px 0px 14px 15px rgba(173, 12, 114, 0.3);
-  }
-}
-
-@media (max-width: 600px) {
-  .cell {
-    width: 50%;
-    height: 50%;
-  }
 }

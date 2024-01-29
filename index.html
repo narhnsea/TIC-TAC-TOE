@@ -1,33 +1,19 @@
-<!DOCTYPE html
-<html langen">
+<!DOCTYPE html>
+<html lang="en">
   <head>
- <!-- Metadata to ensure proper rendering and viewport settings -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Title of the webpage -->
     <title>Tic Tac Toe</title>
-
-    <!-- Link to the external CSS stylesheet -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Main heading of the webpage -->
     <h1>Tic Tac Toe</h1>
-
-    <!-- Container for the game and scoreboard -->
     <div id="gameContainer">
-      <!-- Scoreboard to display the scores of player X and player O -->
       <div id="scoreBoard">
-        <!-- Score and label for player X -->
         <div id="playerXScore">Player X: <span id="scoreX">0</span></div>
-        <!-- Score and label for player O -->
         <div id="playerOScore">Player O: <span id="scoreO">0</span></div>
       </div>
-
-      <!-- Game board containing 9 cells for the Tic Tac Toe game -->
       <div id="gameBoard" class="board">
-        <!-- 9 cells, each with a unique data-cell-index attribute -->
         <div class="cell" data-cell-index="0"></div>
         <div class="cell" data-cell-index="1"></div>
         <div class="cell" data-cell-index="2"></div>
@@ -39,8 +25,7 @@
         <div class="cell" data-cell-index="8"></div>
       </div>
     </div>
-
-    <!-- Button to restart the game -->
     <button id="restartButton">Restart Game</button>
+    <script src="script.js"></script>
   </body>
 </html>
